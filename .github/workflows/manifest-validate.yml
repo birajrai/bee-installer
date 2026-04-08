@@ -1,0 +1,34 @@
+name: Manifest Validation
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  manifest-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install yq
+        run: sudo apt-get update && sudo apt-get install -y python3-pip && pip3 install yq
+      - name: Validate manifest entries exist and have checksums
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+            import yaml,sys,os
+            with open('scripts/manifest.yml') as mf:
+                m=yaml.safe_load(mf)
+            errs=0
+            for name,entry in m.items():
+                script=entry.get('script')
+                path=os.path.join('scripts',script)
+                if not os.path.isfile(path):
+                    print('Missing script for',name,':',path);errs=1
+                if not os.path.isfile(path + '.sha256'):
+                    print('Missing checksum for',name,':',path + '.sha256');errs=1
+            if errs:
+                sys.exit(2)
+            print('Manifest looks good')
+          PY

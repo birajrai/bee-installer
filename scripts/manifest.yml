@@ -1,0 +1,24 @@
+# Manifest of available installers
+# key: service name
+# script: script filename under scripts/ (or installers/), required
+# desc: short description
+
+nodejs:
+  script: nodejs.sh
+  desc: Node.js installer (select version via prompt)
+
+npm:
+  script: npm.sh
+  desc: Nginx Proxy Manager installer
+
+traefik:
+  script: traefik.sh
+  desc: Traefik reverse proxy installer (placeholder)
+
+postgres:
+  script: postgres.sh
+  desc: PostgreSQL installer (placeholder)
+
+certbot:
+  script: certbot.sh
+  desc: Certbot / Let's Encrypt helper (placeholder)
