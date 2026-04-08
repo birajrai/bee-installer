@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Wrapper for NPM installer
-SCRIPT_NAME="npm.sh"
+# Wrapper for certbot installer (placeholder)
+SCRIPT_NAME="certbot.sh"
 exec "$(dirname "$0")/../templates/installer-template.sh" "$SCRIPT_NAME" "$@"

@@ -3,8 +3,8 @@ set -euo pipefail
 
 # Template installer
 # Variables to update for your repo
-OWNER="OWNER"
-REPO="REPO"
+OWNER="birajrai"
+REPO="bee-installer"
 BRANCH="main"
 
 SCRIPT_NAME="${1:-}" # expected to be provided by wrapper
